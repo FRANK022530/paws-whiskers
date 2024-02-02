@@ -1,0 +1,35 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/storefront.css' %}" >
+    <script src="{% static 'js/index.js' %}"></script>
+
+
+    <title>My Store</title>
+</head>
+<body>
+{% include 'pages/nav.html' %}
+<br><br><br><br><br><br><br><br><br>
+<div class="header-container">
+    <img src="{% static 'image/header.png' %}">
+</div>
+<div class="about-container">
+    <div class="about-container1">
+        <h1 style="font-size: 4rem" >About Us</h1><br>
+        <p style="line-height:1.8;">Welcome to Paws & Whiskers where pets come first! We're passionate about your furry friends' well-being, offering top-notch food, grooming tools, and toys. Our curated selection ensures quality and convenience for pet parents. Shop with confidence, enjoy a seamless experience, and join our community dedicated to making every moment with your pets special.</p>
+
+    </div>
+    <div class="about-container2">
+        <img src="{% static 'image/about.png' %}">
+    </div>
+</div>
+
+
+
+
+
+</body>
+</html>

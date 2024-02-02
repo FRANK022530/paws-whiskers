@@ -1,0 +1,193 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/storefront.css' %}" >
+     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" >
+    <script src="{% static 'js/index.js' %}"></script>
+
+
+    <title>My Store</title>
+</head>
+<body>
+
+{% include 'pages/navbar.html' %}
+<br><br><br><br><br><br><br><br><br>
+<div class="header-container">
+    <img src="{% static 'image/header.png' %}">
+</div>
+<div class="about-container">
+    <div class="about-container1">
+        <h1 style="font-size: 4rem" >About Us</h1><br>
+        <p style="line-height:1.8;">Welcome to Paws & Whiskers where pets come first! We're passionate about your furry friends' well-being, offering top-notch food, grooming tools, and toys. Our curated selection ensures quality and convenience for pet parents. Shop with confidence, enjoy a seamless experience, and join our community dedicated to making every moment with your pets special.</p>
+
+    </div>
+    <div class="about-container2">
+        <img src="{% static 'image/about.png' %}">
+    </div>
+</div>
+<div class="category">
+   <ul>
+
+        <li><a style="color: black; text-decoration: none; " href="#foods">Foods</a> </li>
+        <li><a style="color: black; text-decoration: none; " href="#tools">Tools</a> </li>
+        <li><a style="color: black; text-decoration: none; " href="#medicines">Medicines</a> </li>
+        <li><a style="color: black; text-decoration: none; " href="#toys">Toys</a> </li>
+
+    </ul>
+
+</div>
+
+<br id="foods">
+
+<br>
+<div class="product-container">
+<h1 style="width:90%;">Pet Foods</h1>
+
+     {% for product in products1 %}
+         <form action="{% url 'addtocart' %}" method="POST" enctype="multipart/form-data">
+         {% csrf_token %}
+        <div class="product-box">
+            <img class="product-image" src="{{ product.image.url }}" alt="{{ product.name }}">
+            <div class="product-info">
+                <h3>{{ product.name }}</h3>
+                 <input type="hidden" id="productName" name="productName"  value="{{ product.name }}">
+                 <h3>{{ product.price }}</h3>
+                <input type="hidden" id="price" name="price"  value="{{ product.price }}">
+                <input type="hidden" id="quantity" name="quantity"  value="1">
+                <input type="hidden" id="customerid" name="customerid"  value="{{request.session.id}}">
+
+
+            </div>
+            <div class="button-container">
+
+                <a ><button id="View" class="View"><i class="fa-solid fa-cart-shopping"></i></button></a>
+
+            </div>
+        </div>
+         </form>
+  {% endfor %}
+
+</div>
+<br id="tools">
+
+<br>
+<div class="product-container">
+<h1 style="width:90%; ">Pet Tools</h1>
+
+     {% for product in products2 %}
+         <form action="{% url 'addtocart' %}" method="POST" enctype="multipart/form-data">
+         {% csrf_token %}
+        <div class="product-box">
+            <img class="product-image" src="{{ product.image.url }}" alt="{{ product.name }}">
+            <div class="product-info">
+                <h3>{{ product.name }}</h3>
+                 <input type="hidden" id="productName" name="productName"  value="{{ product.name }}">
+                 <h3>{{ product.price }}</h3>
+                <input type="hidden" id="price" name="price"  value="{{ product.price }}">
+                <input type="hidden" id="quantity" name="quantity"  value="1">
+                <input type="hidden" id="customerid" name="customerid"  value="{{request.session.id}}">
+
+
+            </div>
+            <div class="button-container">
+
+                <a ><button id="View" class="View"><i class="fa-solid fa-cart-shopping"></i></button></a>
+
+            </div>
+        </div>
+         </form>
+  {% endfor %}
+
+</div>
+<br id="medicines">
+
+<br>
+<div class="product-container">
+<h1 style="width:90%; ">Pet Medicines</h1>
+
+     {% for product in products3 %}
+         <form action="{% url 'addtocart' %}" method="POST" enctype="multipart/form-data">
+         {% csrf_token %}
+        <div class="product-box">
+            <img class="product-image" src="{{ product.image.url }}" alt="{{ product.name }}">
+            <div class="product-info">
+                <h3>{{ product.name }}</h3>
+                 <input type="hidden" id="productName" name="productName"  value="{{ product.name }}">
+                 <h3>{{ product.price }}</h3>
+                <input type="hidden" id="price" name="price"  value="{{ product.price }}">
+                <input type="hidden" id="quantity" name="quantity"  value="1">
+                <input type="hidden" id="customerid" name="customerid"  value="{{request.session.id}}">
+
+
+            </div>
+            <div class="button-container">
+
+                <a ><button id="View" class="View"><i class="fa-solid fa-cart-shopping"></i></button></a>
+
+            </div>
+        </div>
+         </form>
+  {% endfor %}
+
+</div>
+<br id="toys">
+
+<br>
+<div class="product-container">
+<h1 style="width:90%">Pet Toys</h1>
+
+
+     {% for product in products4 %}
+
+         <form action="{% url 'addtocart' %}" method="POST" enctype="multipart/form-data">
+         {% csrf_token %}
+        <div class="product-box">
+            <img class="product-image" src="{{ product.image.url }}" alt="{{ product.name }}">
+            <div class="product-info">
+                <h3>{{ product.name }}</h3>
+                 <input type="hidden" id="productName" name="productName"  value="{{ product.name }}">
+                 <h3>{{ product.price }}</h3>
+                <input type="hidden" id="price" name="price"  value="{{ product.price }}">
+                <input type="hidden" id="quantity" name="quantity"  value="1">
+                <input type="hidden" id="customerid" name="customerid"  value="{{request.session.id}}">
+
+
+            </div>
+            <div class="button-container">
+
+                <a ><button id="View" class="View"><i class="fa-solid fa-cart-shopping"></i></button></a>
+
+            </div>
+        </div>
+         </form>
+  {% endfor %}
+
+</div>
+     <br><br><br><br>
+
+
+<div class="feedback">
+
+    <form class="feedbackform"  action="{% url 'feedback'  %}" method="POST">
+        {% csrf_token %}
+         <h1>FeedBack</h1><br><br><br>
+        <label for="name">Name</label>
+        <input type="text" id="name" name="name" placeholder="Optional">
+        <label for="email">Email</label>
+         <input type="text" id="email" name="email" placeholder="Optional" >
+          <label for="feedback">Your Feedback:</label>
+        <textarea id="feedback" name="feedback" rows="10" cols="50"></textarea><br>
+        <div style="display: flex; justify-content: right">
+        <input class="feedbackbutton" type="submit" value="Send">
+        </div>
+
+    </form>
+    <div style="width: 50%; margin-top: 20px; text-align: center">
+            <img style="width: 500px" src="{% static 'image/feedback.png' %}">
+        </div>
+</div>
+</body>
+</html>

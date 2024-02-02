@@ -1,0 +1,83 @@
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        background: url('/static/image/background.jpg');
+    color: #333;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-content: center;
+}
+
+
+h1, h2, h3 {
+    color: #2c3e50;
+}
+
+a {
+    color: #3498db;
+    text-decoration: none;
+}
+
+a:hover {
+    color: #2980b9;
+}
+
+form {
+    margin-top: 20px;
+    width: 30%;
+    background-color: white;
+    padding: 30px;
+    border-radius: 10px;
+}
+
+label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+    color: #2c3e50;
+}
+
+input[type="text"],
+input[type="number"],
+input[type="file"],
+select {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 15px;
+    box-sizing: border-box;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+.add-product
+    {
+
+
+        display: flex;
+        justify-content: end;
+    }
+  .Add
+    {
+        width: 6rem;
+        padding: 10px;
+        border-radius: 5px;
+        border: none;
+        background-color:#445FEA;;
+        color: white;
+        font-size: 15px;
+        margin: 5px;
+    }
+
+
+
+
+
+
+/* Responsive design */
+@media screen and (max-width: 600px) {
+    .container {
+        width: 100%;
+        padding: 10px;
+    }
+}

@@ -1,0 +1,94 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Ordered</title>
+    <link rel="stylesheet" type="text/css" href="{% static 'css/ordered.css' %}" >
+</head>
+<body>
+
+
+  <div class="form">
+  <div>
+
+      <h1 >My Ongoing Orders </h1>
+  <br>
+
+  <table>
+    <tr>
+        <th>Product Name</th>
+        <th>Quantity</th>
+        <th>Price</th>
+        <th>Status</th>
+        <th>Action</th>
+
+
+    </tr>
+    {% for cart in cart %}
+    <tr>
+    <form action="{% url 'received' cart.id %}" method="POST">
+        {% csrf_token %}
+        <td style="text-align:left;"><input style="font-size: 15px" type="text" name="item_name" value="{{ cart.name }}" readonly></td>
+
+        <td>
+            <input type="text" name="item_quantity" min="1" value="{{ cart.Quantity }}" onchange="updatePrice(this, {{ cart.Price }})" readonly>
+            <input type="hidden" name="customer_name" value="{{request.session.name}}">
+            <input type="hidden" name="customer_address" value="{{request.session.address}}">
+            <input type="hidden" name="customer_contact" value="{{request.session.contact}}">
+            <input style="display:none;" type="number" name="item_price" value="{{ cart.Price }}">
+
+        </td>
+        <td class="price" >{{ cart.Price }}
+        <td>{{ cart.Status }}</td>
+        <td><button type="submit" style="background-color:Green">Received</button></td>
+
+
+
+
+            </form>
+
+
+
+
+
+
+
+    </tr>
+
+
+
+    {% endfor %}
+</table>
+</div>
+
+
+
+  <br>  <br>  <br>
+
+
+<div style="display: flex; justify-content: space-between; align-items: center; ">
+    <a href="{% url 'storefront' %}" style="font-size: 12px; color: black; text-decoration:none;">Continue Shopping</a>
+
+    </div>
+  </div>
+
+<script>
+
+    function updatePrice(input, unitPrice) {
+        var quantity = input.value;
+        var totalPrice = quantity * unitPrice;
+
+
+        var priceCell = input.parentNode.nextElementSibling;
+        priceCell.innerHTML = totalPrice.toFixed(2);
+
+
+
+    }
+
+
+</script>
+</body>
+</html>

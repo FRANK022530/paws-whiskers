@@ -1,0 +1,89 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title> cart</title>
+    <link rel="stylesheet" type="text/css" href="{% static 'css/cart.css' %}" >
+</head>
+<body>
+
+
+  <div class="form">
+<div>
+      <h1 >My Cart </h1>
+  <br>
+
+  <table>
+    <tr>
+        <th>Product Name</th>
+        <th>Quantity</th>
+        <th>Price</th>
+        <th style="margin-right: 50px">Actions</th>
+    </tr>
+    {% for cart in cart %}
+    <tr>
+    <form action="{% url 'addorder' cart.id %}" method="POST">
+        {% csrf_token %}
+        <td ><input style="font-size: 15px" type="text" name="item_name" value="{{ cart.name }}" readonly></td>
+
+        <td>
+            <input type="number" name="item_quantity" min="1" value="{{ cart.Quantity }}" onchange="updatePrice(this, {{ cart.Price }})" required>
+            <input type="hidden" name="customer_name" value="{{request.session.name}}">
+            <input type="hidden" name="customer_address" value="{{request.session.address}}">
+            <input type="hidden" name="customer_contact" value="{{request.session.contact}}">
+            <input type="hidden" name="customer_id" value="{{request.session.id}}">
+            <input style="display:none;" type="number" name="item_price" value="{{ cart.Price }}">
+
+        </td>
+        <td class="price" >{{ cart.Price }}</td>
+
+
+        <td>
+
+            <button type="submit" style="background-color:green">CheckOut</button>
+            </form>
+            <a href="{% url 'cartdelete' cart.id %}"><button style="background-color:red">Remove</button></a>
+
+
+
+        </td>
+
+
+    </tr>
+
+
+
+    {% endfor %}
+</table>
+</div>
+
+
+
+  <br>  <br>  <br>
+
+
+<div>
+    <a href="{% url 'storefront' %}" style="font-size: 12px; color: black; text-decoration:none;">Continue Shopping</a>
+
+    </div>
+  </div>
+
+<script>
+
+    function updatePrice(input, unitPrice) {
+        var quantity = input.value;
+        var totalPrice = quantity * unitPrice;
+
+
+        var priceCell = input.parentNode.nextElementSibling;
+        priceCell.innerHTML = totalPrice.toFixed(2);
+
+
+    }
+
+
+</script>
+</body>
+</html>

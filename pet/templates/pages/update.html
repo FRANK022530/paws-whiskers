@@ -1,0 +1,47 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/add.css' %}">
+    <title>Update Product</title>
+</head>
+<body>
+
+
+
+<form action="{% url 'updaterecord' products.id %}" method="POST" enctype="multipart/form-data" >
+{% csrf_token %}
+<h1>Update Product</h1><br>
+    <label for="productName">Product Name:</label>
+    <input type="text" value="{{ products.name }}" name="productName" required>
+    <br>
+    <label for="price">Price:</label>
+    <input type="number" value="{{ products.price }}" name="price" min="0.01" step="0.01" required>
+    <br>
+    <label for="quantity">Quantity:</label>
+    <input type="number" value="{{ products.quantity }}" name="quantity" min="1" required>
+    <br>
+    <label for="image">Product Image:</label>
+    <input type="file" value="{{ products.image }}" name="image" accept="image/*" required>
+    <br>
+    <label for="category">Category:</label>
+    <select id="category" name="category" required>
+    <option value="{{ products.category }}"  selected>{{ products.category }}</option>
+    {% for category in categories %}
+        <option style="color: black" value="{{ category.name}}">{{ category.name }}</option>
+    {% endfor %}
+</select>
+
+    <br><br>
+
+    <div class="add-product">
+    <input type="submit" value="Update" class="Add" id="new">
+    </div>
+</form>
+
+
+
+</body>
+</html>

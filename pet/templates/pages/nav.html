@@ -1,0 +1,78 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+
+        nav {
+
+            overflow: hidden;
+            display: flex;
+            position: fixed;
+            width: 100%;
+            background-color: white;
+        }
+
+        nav a {
+            display: block;
+            color: black;
+            text-align: center;
+            padding: 15px 15px;
+            text-decoration: none;
+        }
+
+
+        .logo-container img
+        {
+            width: 120px;
+            aspect-ratio: 1;
+        }
+        .nav-container
+        {
+
+            display: flex;
+            justify-content: right;
+            align-items: center;
+            width: 90%;
+
+        }
+
+        @media only screen and (max-width: 768px) {
+            .nav-container
+        {
+
+
+            justify-content: center;
+
+
+        }
+
+            }
+
+
+
+
+    </style>
+</head>
+<body>
+
+    <nav>
+        <div class="logo-container">
+            <img src="{% static 'image/logo.jpg' %}">
+        </div>
+        <div class="nav-container">
+
+        <a style="background-color: black; color: white;" href="{% url 'login' %}">Log in</a>
+        <a href="{% url 'register' %}">Sign Up</a>
+        </div>
+    </nav>
+
+</body>
+</html>
